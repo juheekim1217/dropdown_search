@@ -650,7 +650,16 @@ class DropdownSearchPopupState<T> extends State<DropdownSearchPopup<T>> {
   }
 
   ///close popup
-  void _closePopup() => widget.onClose?.call();
+  //void _closePopup() => widget.onClose?.call();
+void closePopup() {
+  if (mounted) { // ✅ Prevents unsafe context access
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) { 
+        Navigator.pop(context);
+      }
+    });
+  }
+}
 
   Future<void> loadMoreItems(String filter, int skip) {
     return _manageLoadMoreItems(filter, skip: skip, showLoading: true);
