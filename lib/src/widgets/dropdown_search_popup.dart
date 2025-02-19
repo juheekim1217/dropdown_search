@@ -651,7 +651,7 @@ class DropdownSearchPopupState<T> extends State<DropdownSearchPopup<T>> {
 
   ///close popup
   //void _closePopup() => widget.onClose?.call();
-void closePopup() {
+void _closePopup() {
   if (mounted) { // ✅ Prevents unsafe context access
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) { 
